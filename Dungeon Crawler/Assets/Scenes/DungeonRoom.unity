@@ -772,9 +772,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   northExit: {fileID: 1566745226}
-  eastExit: {fileID: 346507071}
   southExit: {fileID: 565690676}
+  eastExit: {fileID: 346507071}
   westExit: {fileID: 1131651376}
+  northOn: 1
+  southOn: 1
+  eastOn: 1
+  westOn: 1
 --- !u!1 &1566745226
 GameObject:
   m_ObjectHideFlags: 0
