@@ -14,7 +14,7 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         this.rb = this.GetComponent<Rigidbody>();
-        print(MasterData.count);
+        print(MasterData.sourceRoom);
     }
 
     // Update is called once per frame
@@ -42,19 +42,28 @@ public class PlayerController : MonoBehaviour
             keysActive = false;
         }
     }
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerExit(Collider other)
     {
         if(other.gameObject.CompareTag("Exits"))
         {
-            MasterData.count++;
-            SceneManager.LoadScene("DungeonRoom"); //asks it to load a scene 
+            if(other.gameObject == this.northExit)
+            {
+                MasterData.sourceRoom = "north";
+            }
+            if (other.gameObject == this.southExit)
+            {
+                MasterData.sourceRoom = "south";
+            }
+            if (other.gameObject == this.eastExit)
+            {
+                MasterData.sourceRoom = "east";
+            }
+            if (other.gameObject == this.westExit)
+            {
+                MasterData.sourceRoom = "west";
+            }
+
+            SceneManager.LoadScene("SecondRoom"); //asks it to load a scene 
         }
     }
 }
-
-
-
-
-
-//MasterData.count++;
-//SceneManager.LoadScene("DungeonRoom"); //asks it to load a scene 
