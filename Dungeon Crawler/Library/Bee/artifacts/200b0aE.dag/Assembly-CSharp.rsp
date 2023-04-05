@@ -346,6 +346,7 @@
 -r:"Library/Bee/artifacts/200b0aE.dag/UnityEngine.UI.ref.dll"
 "Assets/Scripts/DungeonSetup.cs"
 "Assets/Scripts/MasterData.cs"
+"Assets/Scripts/OriginController.cs"
 "Assets/Scripts/PlayerController.cs"
 -langversion:9.0
 
