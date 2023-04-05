@@ -4,6 +4,7 @@ public class MasterData //unity only knows about monobehaviors, this is not one 
     public static string sourceRoom = "?";
     public static bool setupDone = false;
     public static bool keysActive = true;
-    //public static bool enteringExit = true;
+    public static bool enteringCenter = false;
+    
 }
 

@@ -10,8 +10,6 @@ public class PlayerController : MonoBehaviour
     public GameObject northExit, westExit, southExit, eastExit;
     public float movementSpeed = 40.0f;
    
-    private bool timothyEntering;
-    private bool enteringCenter;
     private Vector3 center = new Vector3(0, 0.5f, 0);
     private bool enteringExit;
 
@@ -19,41 +17,39 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //this.timothyEntering = false; //if timothy is entering, then this is true
         this.rb = this.GetComponent<Rigidbody>();
-        //print(MasterData.sourceRoom);
-        enteringCenter = false;
+ 
 
         if(MasterData.sourceRoom.Equals("north"))
         {
-            this.rb.transform.position = this.southExit.transform.position; //put at new position based on exit
+            this.gameObject.transform.position = this.southExit.transform.position; //put at new position based on exit
             this.rb.AddForce(this.northExit.transform.position * movementSpeed); //shove player Timothy
             MasterData.setupDone = true;
-            enteringCenter = true;
+            MasterData.enteringCenter = true;
             print("shove given");
         }
-        if (MasterData.sourceRoom.Equals("south"))
+        else if (MasterData.sourceRoom.Equals("south"))
         {
-            this.rb.transform.position = this.northExit.transform.position; //put at new position based on exit
+            this.gameObject.transform.position = this.northExit.transform.position; //put at new position based on exit
             this.rb.AddForce(this.southExit.transform.position * movementSpeed); //shove player Timothy
             MasterData.setupDone = true;
-            enteringCenter = true;
+            MasterData.enteringCenter = true;
             print("shove given");
         }
-        if (MasterData.sourceRoom.Equals("east"))
+        else if (MasterData.sourceRoom.Equals("east"))
         {
-            this.rb.transform.position = this.westExit.transform.position; //put at new position based on exit
+            this.gameObject.transform.position = this.westExit.transform.position; //put at new position based on exit
             this.rb.AddForce(this.eastExit.transform.position * movementSpeed); //shove player Timothy
             MasterData.setupDone = true;
-            enteringCenter = true;
+            MasterData.enteringCenter = true;
             print("shove given");
         }
-        if (MasterData.sourceRoom.Equals("west"))
+        else if (MasterData.sourceRoom.Equals("west"))
         {
-            this.rb.transform.position = this.eastExit.transform.position; //put at new position based on exit
+            this.gameObject.transform.position = this.eastExit.transform.position; //put at new position based on exit
             this.rb.AddForce(this.westExit.transform.position * movementSpeed); //shove player Timothy
             MasterData.setupDone = true;
-            enteringCenter = true;
+            MasterData.enteringCenter = true;
             print("shove given");
         }
 
@@ -68,25 +64,25 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.UpArrow) && (MasterData.keysActive == true))
         {
-            this.rb.AddForce(this.northExit.transform.position * movementSpeed); //accessing the position vector in transform
+            this.rb.AddForce(Vector3.forward * movementSpeed * 5); //accessing the position vector in transform
             MasterData.keysActive = false;
             enteringExit = true;
         }
         else if (Input.GetKeyDown(KeyCode.LeftArrow) && (MasterData.keysActive == true))
         {
-            this.rb.AddForce(this.westExit.transform.position * movementSpeed); //accessing the position vector in transform
+            this.rb.AddForce(Vector3.left * movementSpeed * 5); //accessing the position vector in transform
             MasterData.keysActive = false;
             enteringExit = true;
         }
         else if (Input.GetKeyDown(KeyCode.RightArrow) && (MasterData.keysActive == true))
         {
-            this.rb.AddForce(this.eastExit.transform.position * movementSpeed); //accessing the position vector in transform
+            this.rb.AddForce(Vector3.right * movementSpeed * 5); //accessing the position vector in transform
             MasterData.keysActive = false;
             enteringExit = true;
         }
         else if (Input.GetKeyDown(KeyCode.DownArrow) && (MasterData.keysActive == true))
         {
-            this.rb.AddForce(this.southExit.transform.position * movementSpeed); //accessing the position vector in transform
+            this.rb.AddForce(Vector3.back * movementSpeed * 5); //accessing the position vector in transform
             MasterData.keysActive = false;
             enteringExit = true;
         }
@@ -96,11 +92,6 @@ public class PlayerController : MonoBehaviour
     {
         print("i hit something");
 
-        /*if(other.gameObject.CompareTag("Origin"))
-        {
-            this.rb.maxAngularVelocity = 70f;
-            
-        }*/
 
         if (other.gameObject.CompareTag("Exits") /*&& MasterData.setupDone.Equals(true)*/)
         {
@@ -140,8 +131,9 @@ public class PlayerController : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Origin"))
         {
-            if (enteringCenter == true)
+            if (MasterData.enteringCenter == true)
             {
+            
                 this.rb.velocity = Vector3.zero;
                 this.rb.angularVelocity = Vector3.zero;
             }

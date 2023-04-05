@@ -658,7 +658,7 @@ MonoBehaviour:
   westExit: {fileID: 1131651376}
   southExit: {fileID: 565690676}
   eastExit: {fileID: 346507071}
-  movementSpeed: 40
+  movementSpeed: 90
 --- !u!135 &1109050019
 SphereCollider:
   m_ObjectHideFlags: 0
