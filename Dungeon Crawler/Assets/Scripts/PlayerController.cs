@@ -99,27 +99,27 @@ public class PlayerController : MonoBehaviour
             if ((other.gameObject == this.northExit) && enteringExit == true)
             {
                 MasterData.sourceRoom = "north";
-                SceneManager.LoadScene("DungeonRoom0"); //asks it to load a scene
+                SceneManager.LoadScene("Entrance"); //asks it to load a scene
                 enteringExit = false;
 
             }
             if ((other.gameObject == this.southExit) && enteringExit == true)
             {
                 MasterData.sourceRoom = "south";
-                SceneManager.LoadScene("DungeonRoom0");
+                SceneManager.LoadScene("Entrance");
                 enteringExit = false; 
             }
             if ((other.gameObject == this.eastExit) && enteringExit == true)
             {
                 MasterData.sourceRoom = "east";
-                SceneManager.LoadScene("DungeonRoom0");
+                SceneManager.LoadScene("Entrance");
                 enteringExit = false;
 
             }
             if ((other.gameObject == this.westExit) && enteringExit == true)
             {
                 MasterData.sourceRoom = "west";
-                SceneManager.LoadScene("DungeonRoom0");
+                SceneManager.LoadScene("Entrance");
                 enteringExit = false;
             }
 
