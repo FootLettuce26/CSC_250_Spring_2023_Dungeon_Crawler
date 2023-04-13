@@ -64,29 +64,25 @@ public class PlayerController : MonoBehaviour
             if (other.gameObject == this.northExit)
             {
                 MasterData.sourceRoom = "north";
-                MasterData.p.getCurrentRoom().takeExit(MasterData.p, "north");
                 MasterData.enteringCenter = true;
             }
             else if (other.gameObject == this.southExit)
             {
                 MasterData.sourceRoom = "south";
-                MasterData.p.getCurrentRoom().takeExit(MasterData.p, "south");
                 MasterData.enteringCenter = true;
             }
             else if (other.gameObject == this.eastExit)
             {
                 MasterData.sourceRoom = "east";
-                MasterData.p.getCurrentRoom().takeExit(MasterData.p, MasterData.sourceRoom);
                 MasterData.enteringCenter = true;
             }
             else if (other.gameObject == this.westExit)
             {
                 MasterData.sourceRoom = "west";
-                MasterData.p.getCurrentRoom().takeExit(MasterData.p, MasterData.sourceRoom);
                 MasterData.enteringCenter = true;
             }
             MasterData.isExiting = false;
-            
+            MasterData.p.getCurrentRoom().takeExit(MasterData.p, MasterData.sourceRoom);
             SceneManager.LoadScene("DungeonRoom");
         }
         else if (other.gameObject.CompareTag("Exits") && !MasterData.isExiting)
