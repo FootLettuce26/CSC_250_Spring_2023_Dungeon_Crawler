@@ -7,13 +7,14 @@ public class MasterData //unity only knows about monobehaviors, this is not one 
     public static bool enteringCenter = false;
     private static bool isDungeonSetup = false;
     public static Dungeon cs = null;
-    public Player p = null;
+    public static Player p = null;
+    public static bool isExiting = true;
 
     public static void setupDungeon()
     {
         MasterData.cs = new Dungeon(100);
         //creating player using constructor in Player class
-        Player p = new Player("Timothyyyy");
+        MasterData.p = new Player("Timothyyyy");
 
         //calling the methods that belong to the dungeon class using the instance of Dungeon 
         MasterData.cs.populateCSDepartment();

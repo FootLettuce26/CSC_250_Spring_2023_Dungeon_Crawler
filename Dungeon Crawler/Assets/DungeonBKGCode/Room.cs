@@ -1,34 +1,77 @@
 public class Room
 {
-    //prototyping variables up here
     private string name;
-    protected Exit[] theExits;
-    public int numberOfExits;
-    protected Player[] thePlayers; //creating an array of type Player
+    private Exit[] theExits;
+    private int numberOfExits;
+    private Player[] thePlayers;
     private int currentNumberOfPlayers;
-    private int currentNumberOfMonsters;
-    
+
     public Room(string name)
     {
-        //defining variables down here
         this.name = name;
         this.theExits = new Exit[4];
         this.numberOfExits = 0;
         this.thePlayers = new Player[25];
         this.currentNumberOfPlayers = 0;
-        
     }
-    
-    public void addExit(Exit e)
+
+    public int getNumberOfPlayers()
     {
-        if(this.numberOfExits < 4)
+        return this.currentNumberOfPlayers;
+    }
+
+    public bool hasExit(string direction)
+    {
+        for (int i = 0; i < this.numberOfExits; i++)
         {
-            this.theExits[this.numberOfExits] = e;
-            this.numberOfExits++;
+            if (this.theExits[i].getDirection().Equals(direction))
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+
+
+
+    public void takeExit(Player who, string direction)
+    {
+        Exit theExitToTake = null;
+        for (int i = 0; i < this.numberOfExits; i++)
+        {
+            if (this.theExits[i].getDirection().Equals(direction))
+            {
+                theExitToTake = this.theExits[i];
+                break;
+            }
+        }
+
+        //did we find an exit?
+        if (theExitToTake == null)
+        {
+            //Console.WriteLine("****** Exit not found! ******");
         }
         else
         {
-            //Console.WriteLine("Too Many Exits!!!!");
+            //remove player from this room
+            this.removePlayerFromRoom(who);
+            theExitToTake.addPlayer(who);
+        }
+    }
+
+    private void removePlayerFromRoom(Player p)
+    {
+        for (int i = 0; i < this.currentNumberOfPlayers; i++)
+        {
+            if (this.thePlayers[i] == p)
+            {
+                for (int j = i + 1; j < this.currentNumberOfPlayers; j++)
+                {
+                    this.thePlayers[j - 1] = this.thePlayers[j];
+                }
+                this.currentNumberOfPlayers--;
+                return;
+            }
         }
     }
 
@@ -36,24 +79,21 @@ public class Room
     {
         this.thePlayers[this.currentNumberOfPlayers] = p;
         this.currentNumberOfPlayers++;
+
         p.setCurrentRoom(this);
     }
 
-    public void removePlayer(Player thePlayer)
+    public void addExit(Exit e)
     {
-        for(int i = 0; i < currentNumberOfPlayers; i++)
+        if (this.numberOfExits < 4)
         {
-            if(thePlayer == thePlayers[i])
-            {
-                for(int j = i+1; j <currentNumberOfPlayers; j++)
-                {
-                    this.thePlayers[j-1] = this.thePlayers[j];
-                }
-                this.currentNumberOfPlayers--;
-                return;
-            }
+            this.theExits[this.numberOfExits] = e;
+            this.numberOfExits++;
+        }
+        else
+        {
+            //System.err.println("Too Many Exits!!!!");
         }
     }
-    
-    
+
 }

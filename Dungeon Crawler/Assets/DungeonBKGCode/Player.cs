@@ -1,18 +1,18 @@
 public class Player
 {
-
-    protected string name; //protected allows the parent(this) and it's children access
-    protected Room currentRoom;
+    private string name;
+    private Room currentRoom;
 
     public Player(string name)
     {
         this.name = name;
     }
-    //read only access and private name; if in Player they get write and protected
-    public string getName()
+
+    public Room getCurrentRoom()
     {
-        return this.name;
+        return this.currentRoom;
     }
+
     public void setCurrentRoom(Room r)
     {
         if (r != null)
@@ -20,8 +20,11 @@ public class Player
             this.currentRoom = r;
         }
     }
-    public Room getCurrentRoom()
+
+    //getter (accessor) for read only access to the private field name
+    public string getName()
     {
-        return this.currentRoom;
+        return this.name;
     }
+
 }
