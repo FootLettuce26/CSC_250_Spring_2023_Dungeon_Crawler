@@ -1,6 +1,6 @@
 public class Room
 {
-    private string name;
+    public string name; //change back to private.
     private Exit[] theExits;
     private int numberOfExits;
     private Player[] thePlayers;

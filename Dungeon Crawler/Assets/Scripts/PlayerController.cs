@@ -7,7 +7,7 @@ public class PlayerController : MonoBehaviour
 {
     private Rigidbody rb;
     public GameObject northExit, southExit, eastExit, westExit;
-    public GameObject westStart, eastStart, northStart, southStart;
+    //public GameObject westStart, eastStart, northStart, southStart;
     public float movementSpeed = 40.0f;
     
 
@@ -59,6 +59,9 @@ public class PlayerController : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
+
+        print("i hit something");
+
         if (other.gameObject.CompareTag("Exits") && MasterData.isExiting)
         {
             if (other.gameObject == this.northExit)
@@ -82,8 +85,13 @@ public class PlayerController : MonoBehaviour
                 MasterData.enteringCenter = true;
             }
             MasterData.isExiting = false;
+            
+
+            print(MasterData.p.getCurrentRoom().name);
             MasterData.p.getCurrentRoom().takeExit(MasterData.p, MasterData.sourceRoom);
+            print(MasterData.sourceRoom);
             SceneManager.LoadScene("DungeonRoom");
+            print(MasterData.p.getCurrentRoom().name);
         }
         else if (other.gameObject.CompareTag("Exits") && !MasterData.isExiting)
         {
@@ -94,29 +102,33 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.UpArrow) && (MasterData.keysActive == true))
+        if (Input.GetKeyDown(KeyCode.UpArrow) && (MasterData.keysActive == true) && (MasterData.keysActiveNorth == true))
         {
             this.rb.AddForce(Vector3.forward * movementSpeed * 5); //accessing the position vector in transform
             MasterData.keysActive = false;
             MasterData.isExiting = true;
+            MasterData.keysActiveNorth = false;
         }
-        else if (Input.GetKeyDown(KeyCode.LeftArrow) && (MasterData.keysActive == true))
+        else if (Input.GetKeyDown(KeyCode.LeftArrow) && (MasterData.keysActive == true) && (MasterData.keysActiveWest == true))
         {
             this.rb.AddForce(Vector3.left * movementSpeed * 5); //accessing the position vector in transform
             MasterData.keysActive = false;
             MasterData.isExiting = true;
+            MasterData.keysActiveWest = false;
         }
-        else if (Input.GetKeyDown(KeyCode.RightArrow) && (MasterData.keysActive == true))
+        else if (Input.GetKeyDown(KeyCode.RightArrow) && (MasterData.keysActive == true) && (MasterData.keysActiveEast == true))
         {
             this.rb.AddForce(Vector3.right * movementSpeed * 5); //accessing the position vector in transform
             MasterData.keysActive = false;
             MasterData.isExiting = true;
+            MasterData.keysActiveEast = false;
         }
-        else if (Input.GetKeyDown(KeyCode.DownArrow) && (MasterData.keysActive == true))
+        else if (Input.GetKeyDown(KeyCode.DownArrow) && (MasterData.keysActive == true) && (MasterData.keysActiveSouth == true))
         {
             this.rb.AddForce(Vector3.back * movementSpeed * 5); //accessing the position vector in transform
             MasterData.keysActive = false;
             MasterData.isExiting = true;
+            MasterData.keysActiveSouth = false;
         }
 
     }

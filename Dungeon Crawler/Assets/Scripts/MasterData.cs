@@ -10,17 +10,33 @@ public class MasterData //unity only knows about monobehaviors, this is not one 
     public static Player p = null;
     public static bool isExiting = true;
 
+    public static bool keysActiveEast = false;
+    public static bool keysActiveNorth = false;
+    public static bool keysActiveSouth = false;
+    public static bool keysActiveWest = false;
+
+    public static bool northOn;
+    public static bool southOn;
+    public static bool eastOn;
+    public static bool westOn;
+
     public static void setupDungeon()
     {
-        MasterData.cs = new Dungeon(100);
-        //creating player using constructor in Player class
-        MasterData.p = new Player("Timothyyyy");
+        if(MasterData.isDungeonSetup == false)
+        {
+            MasterData.cs = new Dungeon(100);
+            //creating player using constructor in Player class
+            MasterData.p = new Player("Timothyyyy");
 
-        //calling the methods that belong to the dungeon class using the instance of Dungeon 
-        MasterData.cs.populateCSDepartment();
-        MasterData.cs.addPlayer(p);
+            //calling the methods that belong to the dungeon class using the instance of Dungeon 
+            MasterData.cs.populateCSDepartment();
+            MasterData.cs.addPlayer(p);
+
+            MasterData.isDungeonSetup = true;
+        }
+      
         
-        MasterData.isDungeonSetup = true;
+
     }
 }
 

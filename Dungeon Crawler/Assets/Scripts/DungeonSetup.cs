@@ -7,53 +7,58 @@ public class DungeonSetup : MonoBehaviour
     public GameObject northExit, southExit, eastExit, westExit;
 
 
-    public bool northOn;
-    public bool southOn;
-    public bool eastOn;
-    public bool westOn;
-
-    
-
     // Start is called before the first frame update
     void Start()
     {
         MasterData.setupDungeon();
-        this.northOn = false;
-        this.southOn = false;
-        this.eastOn = false;
-        this.westOn = false;
+        MasterData.northOn = false;
+        MasterData.eastOn = false;
+        MasterData.southOn = false;
+        MasterData.westOn = false;
+        
 
-        this.northExit.SetActive(northOn);
-        this.eastExit.SetActive(eastOn);
-        this.westExit.SetActive(westOn);
-        this.southExit.SetActive(southOn);
+        this.northExit.SetActive(MasterData.northOn);
+        this.eastExit.SetActive(MasterData.eastOn);
+        this.westExit.SetActive(MasterData.westOn);
+        this.southExit.SetActive(MasterData.southOn);
+
+        /*this.keysActiveEast = false;
+        this.keysActiveNorth = false;
+        this.keysActiveSouth = false;
+        this.keysActiveWest = false;*/
+
+
 
         if (MasterData.p.getCurrentRoom().hasExit("north"))
         {
-            this.northOn = true;
-            this.northExit.SetActive(northOn);
+            MasterData.northOn = true;
+            this.northExit.SetActive(MasterData.northOn);
+            MasterData.keysActiveNorth = true;
 
             print("this room has north exit");
         }
         if (MasterData.p.getCurrentRoom().hasExit("east"))
         {
-            this.eastOn = true;
-            this.eastExit.SetActive(eastOn);
+            MasterData.eastOn = true;
+            this.eastExit.SetActive(MasterData.eastOn);
+            MasterData.keysActiveEast = true;
 
             print("this room has east exit");
 
         }
         if (MasterData.p.getCurrentRoom().hasExit("south"))
         {
-            this.southOn = true;
-            this.southExit.SetActive(southOn);
+            MasterData.southOn = true;
+            this.southExit.SetActive(MasterData.southOn);
+            MasterData.keysActiveSouth = true;
 
             print("this room has south exit");
         }
         if (MasterData.p.getCurrentRoom().hasExit("west"))
         {
-            this.westOn = true;
-            this.westExit.SetActive(westOn);
+            MasterData.westOn = true;
+            this.westExit.SetActive(MasterData.westOn);
+            MasterData.keysActiveWest = true;
 
             print("this room has west exit");
         }
