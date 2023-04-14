@@ -15,17 +15,17 @@ public class DungeonSetup : MonoBehaviour
         MasterData.eastOn = false;
         MasterData.southOn = false;
         MasterData.westOn = false;
-        
+
 
         this.northExit.SetActive(MasterData.northOn);
         this.eastExit.SetActive(MasterData.eastOn);
         this.westExit.SetActive(MasterData.westOn);
         this.southExit.SetActive(MasterData.southOn);
 
-        /*this.keysActiveEast = false;
-        this.keysActiveNorth = false;
-        this.keysActiveSouth = false;
-        this.keysActiveWest = false;*/
+        MasterData.keysActiveEast = false;
+        MasterData.keysActiveNorth = false;
+        MasterData.keysActiveSouth = false;
+        MasterData.keysActiveWest = false;
 
 
 

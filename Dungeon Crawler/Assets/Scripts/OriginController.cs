@@ -7,7 +7,7 @@ public class OriginController : MonoBehaviour
     //public GameObject thePlayer;
     private void OnTriggerEnter(Collider other)
     {
-        if(other.tag.Equals("Player"))
+        if (other.tag.Equals("Player"))
         {
             //Rigidbody rb = thePlayer.GetComponent<Rigidbody>();
             MasterData.setupDone = true;

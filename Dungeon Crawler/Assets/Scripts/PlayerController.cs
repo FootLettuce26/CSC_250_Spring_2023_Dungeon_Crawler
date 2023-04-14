@@ -9,13 +9,13 @@ public class PlayerController : MonoBehaviour
     public GameObject northExit, southExit, eastExit, westExit;
     //public GameObject westStart, eastStart, northStart, southStart;
     public float movementSpeed = 40.0f;
-    
+
 
     // Start is called before the first frame update
     void Start()
     {
         this.rb = this.GetComponent<Rigidbody>();
-        
+
 
         if (!MasterData.sourceRoom.Equals("?"))
         {
@@ -49,7 +49,7 @@ public class PlayerController : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Origin"))
         {
-            if(MasterData.enteringCenter == true)
+            if (MasterData.enteringCenter == true)
             {
                 this.rb.Sleep();
             }
@@ -85,7 +85,7 @@ public class PlayerController : MonoBehaviour
                 MasterData.enteringCenter = true;
             }
             MasterData.isExiting = false;
-            
+
 
             print(MasterData.p.getCurrentRoom().name);
             MasterData.p.getCurrentRoom().takeExit(MasterData.p, MasterData.sourceRoom);

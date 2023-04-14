@@ -22,7 +22,7 @@ public class MasterData //unity only knows about monobehaviors, this is not one 
 
     public static void setupDungeon()
     {
-        if(MasterData.isDungeonSetup == false)
+        if (MasterData.isDungeonSetup == false)
         {
             MasterData.cs = new Dungeon(100);
             //creating player using constructor in Player class
@@ -34,9 +34,8 @@ public class MasterData //unity only knows about monobehaviors, this is not one 
 
             MasterData.isDungeonSetup = true;
         }
-      
-        
+
+
 
     }
 }
-
