@@ -10,16 +10,16 @@ public class FightSceneSetup : MonoBehaviour
     public TextMeshProUGUI playerHitpoints;
     public TextMeshProUGUI playerArmor;
     public TextMeshProUGUI playerAttack;
-    public int playerHitpointAmount;
-    public int playerArmorAmount;
-    public int playerAttackAmount;
+    private int playerHitpointAmount;
+    private int playerArmorAmount;
+    private int playerAttackAmount;
 
     public TextMeshProUGUI monsterHitpoints;
     public TextMeshProUGUI monsterArmor;
     public TextMeshProUGUI monsterAttack;
-    public int monsterHitpointAmount;
-    public int monsterArmorAmount;
-    public int monsterAttackAmount; 
+    private int monsterHitpointAmount;
+    private int monsterArmorAmount;
+    private int monsterAttackAmount; 
     // Start is called before the first frame update
     void Start()
     {

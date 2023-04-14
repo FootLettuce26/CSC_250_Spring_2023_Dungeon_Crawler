@@ -9,7 +9,7 @@ public class PlayerController : MonoBehaviour
     public GameObject northExit, southExit, eastExit, westExit;
     //public GameObject westStart, eastStart, northStart, southStart;
     public float movementSpeed = 40.0f;
-
+    private Room roomBeforeFightScene;
 
     // Start is called before the first frame update
     void Start()
@@ -57,8 +57,9 @@ public class PlayerController : MonoBehaviour
         }
         if(other.gameObject.CompareTag("ForFights"))
         {
-            
-            if(Random.Range(1, 3) == 1 || Random.Range(1, 3) == 2 || Random.Range(1, 3) == 3)
+            //stores room so that when fight is over, system knows where to return to
+            this.roomBeforeFightScene = MasterData.p.getCurrentRoom();
+            if(Random.Range(1, 10) == 1 || Random.Range(1, 10) == 2 || Random.Range(1, 10) == 3)
             {
                 SceneManager.LoadScene("FightScene");
                 
