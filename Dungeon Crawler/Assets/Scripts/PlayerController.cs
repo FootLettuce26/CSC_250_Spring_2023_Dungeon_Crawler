@@ -55,7 +55,17 @@ public class PlayerController : MonoBehaviour
             }
             MasterData.keysActive = true;
         }
+        if(other.gameObject.CompareTag("ForFights"))
+        {
+            
+            if(Random.Range(1, 3) == 1 || Random.Range(1, 3) == 2 || Random.Range(1, 3) == 3)
+            {
+                SceneManager.LoadScene("FightScene");
+                
+            }
+        }
     }
+
 
     private void OnTriggerExit(Collider other)
     {
