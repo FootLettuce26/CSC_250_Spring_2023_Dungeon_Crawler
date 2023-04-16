@@ -351,6 +351,7 @@
 "Assets/Scripts/DungeonSetup.cs"
 "Assets/Scripts/FightSceneSetup.cs"
 "Assets/Scripts/MasterData.cs"
+"Assets/Scripts/MonsterRotate.cs"
 "Assets/Scripts/OriginController.cs"
 "Assets/Scripts/PlayerController.cs"
 "Assets/TextMesh Pro/Examples & Extras/Scripts/Benchmark01.cs"

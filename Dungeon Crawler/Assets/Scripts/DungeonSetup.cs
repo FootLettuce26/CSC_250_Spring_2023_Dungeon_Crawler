@@ -5,7 +5,7 @@ using UnityEngine;
 public class DungeonSetup : MonoBehaviour
 {
     public GameObject northExit, southExit, eastExit, westExit;
-    public GameObject eastFight, southFight, westFight, northFight;
+   
 
     // Start is called before the first frame update
     void Start()
@@ -22,10 +22,6 @@ public class DungeonSetup : MonoBehaviour
         this.westExit.SetActive(MasterData.westOn);
         this.southExit.SetActive(MasterData.southOn);
 
-        this.northFight.SetActive(MasterData.northOn);
-        this.eastFight.SetActive(MasterData.eastOn);
-        this.southFight.SetActive(MasterData.southOn);
-        this.westFight.SetActive(MasterData.westOn);
 
         MasterData.keysActiveEast = false;
         MasterData.keysActiveNorth = false;
@@ -38,7 +34,7 @@ public class DungeonSetup : MonoBehaviour
         {
             MasterData.northOn = true;
             this.northExit.SetActive(MasterData.northOn);
-            this.northFight.SetActive(MasterData.northOn);
+            
             MasterData.keysActiveNorth = true;
 
             print("this room has north exit");
@@ -47,7 +43,6 @@ public class DungeonSetup : MonoBehaviour
         {
             MasterData.eastOn = true;
             this.eastExit.SetActive(MasterData.eastOn);
-            this.eastFight.SetActive(MasterData.eastOn);
             MasterData.keysActiveEast = true;
 
             print("this room has east exit");
@@ -57,7 +52,6 @@ public class DungeonSetup : MonoBehaviour
         {
             MasterData.southOn = true;
             this.southExit.SetActive(MasterData.southOn);
-            this.southFight.SetActive(MasterData.southOn);
             MasterData.keysActiveSouth = true;
 
             print("this room has south exit");
@@ -66,7 +60,6 @@ public class DungeonSetup : MonoBehaviour
         {
             MasterData.westOn = true;
             this.westExit.SetActive(MasterData.westOn);
-            this.westFight.SetActive(MasterData.westOn);
             MasterData.keysActiveWest = true;
 
             print("this room has west exit");

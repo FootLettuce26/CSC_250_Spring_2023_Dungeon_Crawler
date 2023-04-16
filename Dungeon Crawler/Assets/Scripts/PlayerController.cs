@@ -10,11 +10,17 @@ public class PlayerController : MonoBehaviour
     //public GameObject westStart, eastStart, northStart, southStart;
     public float movementSpeed = 40.0f;
     private Room roomBeforeFightScene;
+    public GameObject eastFight, southFight, westFight, northFight;
 
     // Start is called before the first frame update
     void Start()
     {
         this.rb = this.GetComponent<Rigidbody>();
+
+        this.eastFight.SetActive(false);
+        this.northFight.SetActive(false);
+        this.southFight.SetActive(false);
+        this.northFight.SetActive(false);
 
 
         if (!MasterData.sourceRoom.Equals("?"))
@@ -54,23 +60,32 @@ public class PlayerController : MonoBehaviour
                 this.rb.Sleep();
             }
             MasterData.keysActive = true;
+
         }
         if(other.gameObject.CompareTag("ForFights"))
         {
             //stores room so that when fight is over, system knows where to return to
             this.roomBeforeFightScene = MasterData.p.getCurrentRoom();
-            if(Random.Range(1, 10) == 1 || Random.Range(1, 10) == 2 || Random.Range(1, 10) == 3)
-            {
-                SceneManager.LoadScene("FightScene");
-                
-            }
+            SceneManager.LoadScene("FightScene");
         }
     }
 
+    private bool fightSceneCheck()
+    {
+        if (Random.Range(1, 10) <= 3)
+        {
+            return true;
+
+        }
+        else
+        {
+            return false;
+        }
+    }
 
     private void OnTriggerExit(Collider other)
     {
-
+        
         print("i hit something");
 
         if (other.gameObject.CompareTag("Exits") && MasterData.isExiting)
@@ -79,6 +94,7 @@ public class PlayerController : MonoBehaviour
             {
                 MasterData.sourceRoom = "north";
                 MasterData.enteringCenter = true;
+
             }
             else if (other.gameObject == this.southExit)
             {
@@ -98,11 +114,10 @@ public class PlayerController : MonoBehaviour
             MasterData.isExiting = false;
 
 
-            print(MasterData.p.getCurrentRoom().name);
+       
             MasterData.p.getCurrentRoom().takeExit(MasterData.p, MasterData.sourceRoom);
-            print(MasterData.sourceRoom);
             SceneManager.LoadScene("DungeonRoom");
-            print(MasterData.p.getCurrentRoom().name);
+            
         }
         else if (other.gameObject.CompareTag("Exits") && !MasterData.isExiting)
         {
@@ -119,6 +134,7 @@ public class PlayerController : MonoBehaviour
             MasterData.keysActive = false;
             MasterData.isExiting = true;
             MasterData.keysActiveNorth = false;
+            this.northFight.SetActive(fightSceneCheck());
         }
         else if (Input.GetKeyDown(KeyCode.LeftArrow) && (MasterData.keysActive == true) && (MasterData.keysActiveWest == true))
         {
@@ -126,6 +142,7 @@ public class PlayerController : MonoBehaviour
             MasterData.keysActive = false;
             MasterData.isExiting = true;
             MasterData.keysActiveWest = false;
+            this.westFight.SetActive(fightSceneCheck());
         }
         else if (Input.GetKeyDown(KeyCode.RightArrow) && (MasterData.keysActive == true) && (MasterData.keysActiveEast == true))
         {
@@ -133,6 +150,7 @@ public class PlayerController : MonoBehaviour
             MasterData.keysActive = false;
             MasterData.isExiting = true;
             MasterData.keysActiveEast = false;
+            this.eastFight.SetActive(fightSceneCheck());
         }
         else if (Input.GetKeyDown(KeyCode.DownArrow) && (MasterData.keysActive == true) && (MasterData.keysActiveSouth == true))
         {
@@ -140,6 +158,7 @@ public class PlayerController : MonoBehaviour
             MasterData.keysActive = false;
             MasterData.isExiting = true;
             MasterData.keysActiveSouth = false;
+            this.southFight.SetActive(fightSceneCheck());
         }
 
     }
